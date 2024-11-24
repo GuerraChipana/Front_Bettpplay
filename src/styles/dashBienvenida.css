@@ -1,0 +1,60 @@
+/* DashBienvenida.css */
+.dash-bienvenida-container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.dash-bienvenida-card {
+  padding: 30px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.dash-bienvenida-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.dash-bienvenida-role {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.dash-bienvenida-message {
+  margin-top: 20px;
+}
+
+.dash-bienvenida-message p {
+  font-size: 1.1rem;
+}
+
+.dash-bienvenida-success {
+  background-color: #d4edda;
+  color: #000000;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.dash-bienvenida-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.dash-bienvenida-info {
+  background-color: #cce5ff;
+  color: #004085;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.dash-bienvenida-secondary {
+  background-color: #e2e3e5;
+  color: #383d41;
+  border-radius: 4px;
+  padding: 15px;
+}
