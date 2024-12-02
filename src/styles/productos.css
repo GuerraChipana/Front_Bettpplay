@@ -1,0 +1,188 @@
+/* Contenedor principal */
+.productos-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Contenedor de productos y filtros */
+.productos-contenido {
+  display: flex;
+  width: 100%;
+}
+
+/* Barra lateral de filtros */
+.filtros {
+  width: 250px; /* Ajustamos el tamaño del filtro */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-right: 20px; /* Separación entre filtro y productos */
+}
+
+/* Estilo para el select de marca (más compacto) */
+.filtro {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  background-color: #fff;
+  color: #333;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.filtro:focus {
+  outline: none;
+  border-color: #ff7043;
+  box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.3);
+}
+
+/* Productos Grid */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajuste de tamaño más pequeño */
+  gap: 20px;
+  flex-grow: 1; /* Los productos ocupan el espacio restante */
+}
+
+/* Card de producto */
+.producto-card {
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  background-color: #fafafa;
+}
+
+/* Imagen de producto */
+.producto-image {
+  position: relative;
+  padding-top: 60%; /* Proporción ajustada */
+  overflow: hidden;
+}
+
+.producto-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.producto-card:hover .producto-img {
+  transform: scale(1.05);
+}
+
+/* Contenido de la tarjeta */
+.producto-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.producto-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.producto-marca {
+  font-size: 1.1rem;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.producto-precio {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ff7043;
+  margin-top: 8px;
+}
+
+/* Mensajes de carga y error */
+.loading {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ff7043;
+}
+
+.error {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #ff3b3b;
+}
+
+/* Placeholder */
+.producto-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eaeaea;
+  height: 100%;
+  color: #aaa;
+  font-size: 3rem;
+  border-radius: 15px;
+}
+
+/* Media queries para diseño responsive */
+@media (max-width: 768px) {
+  .productos-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .productos-contenido {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .filtros {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .productos-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .producto-name {
+    font-size: 1.4rem;
+  }
+
+  .producto-precio {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .productos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .producto-name {
+    font-size: 1.3rem;
+  }
+
+  .producto-precio {
+    font-size: 1.1rem;
+  }
+}

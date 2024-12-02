@@ -1,0 +1,78 @@
+.dash-abastecimiento-container {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    color: #333;
+}
+
+.dash-abastecimiento-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.dash-abastecimiento-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.dash-abastecimiento-form-group {
+    margin-bottom: 15px;
+}
+
+.dash-abastecimiento-form-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.dash-abastecimiento-form-group select,
+.dash-abastecimiento-form-group input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.dash-abastecimiento-button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dash-abastecimiento-button:hover {
+    background-color: #45a049;
+}
+
+.dash-abastecimiento-subtitle {
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.dash-abastecimiento-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.dash-abastecimiento-table th,
+.dash-abastecimiento-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.dash-abastecimiento-table th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.dash-abastecimiento-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.dash-abastecimiento-table tr:hover {
+    background-color: #f1f1f1;
+}

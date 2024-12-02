@@ -47,6 +47,12 @@ function Dashboard() {
             </Link>
           </li>
           <li className="dashboard-nav-item">
+            <Link to="/dashboard/Abastecimiento" className="dashboard-nav-link" title="Usuarios">
+              <FontAwesomeIcon icon={faUsers} size="lg" />
+              {!collapsed && <span className="dashboard-nav-text">Abastecimiento</span>}
+            </Link>
+          </li>
+          <li className="dashboard-nav-item">
             <Link to="/dashboard/Usuarios" className="dashboard-nav-link" title="Usuarios">
               <FontAwesomeIcon icon={faUsers} size="lg" />
               {!collapsed && <span className="dashboard-nav-text">Usuarios</span>}

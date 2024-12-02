@@ -1,0 +1,91 @@
+.dash-proveedores-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+.page-title {
+  color: #2c3e50;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  color: #2980b9;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.table {
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #2980b9;
+  color: #fff;
+}
+
+.table td {
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-crear {
+  background-color: #3498db;
+  color: #fff;
+  font-weight: bold;
+}
+
+.btn-crear:hover {
+  background-color: #2980b9;
+}
+
+.modal-content {
+  border-radius: 12px;
+}
+
+.modal-header {
+  background-color: #2980b9;
+  color: #fff;
+}
+
+.form-control {
+  border-radius: 8px;
+}
+
+.toast {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+/* Modify the size and colors of buttons */
+.btn-sm {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.btn-danger {
+  background-color: #e74c3c; /* Red for deactivation */
+  border-color: #e74c3c;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b; /* Darker red for hover effect */
+  border-color: #c0392b;
+}
+
+.btn-warning {
+  background-color: #f39c12; /* Soft yellow for edit */
+  border-color: #f39c12;
+}
+
+.btn-warning:hover {
+  background-color: #e67e22; /* Darker yellow for hover effect */
+  border-color: #e67e22;
+}

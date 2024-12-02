@@ -213,6 +213,7 @@ function DashProductos() {
               <th>Nombre</th>
               <th>Detalle</th>
               <th>Marca</th>
+              <th>Cantidad</th>
               <th>Precio</th>
               <th>Categoría</th>
               <th>Estado</th>
@@ -234,6 +235,7 @@ function DashProductos() {
                 <td>{producto.nombre_producto}</td>
                 <td>{producto.descripcion_producto}</td>
                 <td>{producto.marca_producto}</td>
+                <td>{producto.cantidad_producto}</td>
                 <td>{producto.precio_producto}</td>
                 <td>
                   {categorias.find(
@@ -243,13 +245,13 @@ function DashProductos() {
                 <td>{producto.estado_producto}</td>
                 <td>
                   <button
-                    className="btn btn-primary btn-sm"
+                    className="btn btn-warning btn-sm"
                     onClick={() => handleEditar(producto)}
                   >
                     Editar
                   </button>
                   <button
-                    className="btn btn-warning btn-sm ms-2"
+                    className="btn btn-info btn-sm"
                     onClick={() => handleCambiarEstado(producto)}
                   >
                     {producto.estado_producto === "activo"
