@@ -1,0 +1,76 @@
+/* Estilos generales para el contenedor de login */
+.admin-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("/src/assets/fondo.jpg") no-repeat center center fixed;
+    background-size: cover;
+    padding: 20px;
+    color: #fff;
+}
+
+.admin-login-form-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.admin-login-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 20px;
+}
+
+.admin-login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.input-label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    transition: 0.3s;
+}
+
+.submit-button {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    background-color: #FF6200;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #e55a00;
+    transform: scale(1.05);
+}

@@ -189,18 +189,15 @@ export const cambiarEstadoProducto = async (id, estado) => {
 // Obtener productos activos (para clientes)
 export const obtenerProductosActivos = async () => {
   try {
-    const token = obtenerToken();
     const url = `${API_URL}/producto/activos`;
 
     const response = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
     });
 
-    console.log("Llamada a la API - obtenerProductosActivos", url);
 
     if (!response.ok) {
       throw new Error("No se pudieron obtener los productos activos");
@@ -214,32 +211,44 @@ export const obtenerProductosActivos = async () => {
   }
 };
 
-// Obtener productos activos por categoría (para clientes)
-export const obtenerProductosActivosPorCategoria = async (categoriaId) => {
+// Obtener un producto por ID (para administradores o usuarios con permisos)
+export const obtenerProductoPorId = async (productoId) => {
   try {
-    const token = obtenerToken();
-    const url = `${API_URL}/producto/activos/categoria/${categoriaId}`;
+    const url = `${API_URL}/producto/activos/${productoId}`;  // Usamos el ID en la URL
 
     const response = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
     });
 
-    console.log("Llamada a la API - obtenerProductosActivosPorCategoria", url);
+    console.log("Llamada a la API - obtenerProductoPorId", url);
 
     if (!response.ok) {
-      throw new Error(
-        "No se pudieron obtener los productos activos por categoría"
-      );
+      throw new Error("No se pudo obtener el producto");
     }
 
     const data = await response.json();
+    return data; // Retorna el producto encontrado
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+// Obtener productos activos por categoría (para clientes)
+export const obtenerProductosActivosPorCategoria = async (categoriaId) => {
+  try {
+    const url = `${API_URL}/producto/activos/categoria/${categoriaId}`;
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
     return data; // Retorna los productos activos filtrados por categoría
   } catch (error) {
-    console.error("Error en obtenerProductosActivosPorCategoria:", error);
     throw new Error(error.message);
   }
 };
@@ -247,14 +256,12 @@ export const obtenerProductosActivosPorCategoria = async (categoriaId) => {
 // Obtener productos activos por marca (para clientes)
 export const obtenerProductosActivosPorMarca = async (marca) => {
   try {
-    const token = obtenerToken();
     const url = `${API_URL}/producto/activos/marca/${marca}`;
 
     const response = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
     });
 

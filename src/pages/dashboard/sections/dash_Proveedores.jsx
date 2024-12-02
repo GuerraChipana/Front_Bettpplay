@@ -1,263 +1,274 @@
 import React, { useState, useEffect } from "react";
-import { agregarProveedorService, editarProveedorService, cambiarEstadoProveedorService, listarProveedoresService } from '../../../services/provedores.js';
-import { obtenerCategorias } from '../../../services/categoria.js';  // Importamos la función de categorías
-import { Modal, Button, Form, Toast } from 'react-bootstrap';
+import {
+  cambiarEstadoProveedorService,
+  listarProveedoresService,
+  agregarProveedorService,
+  editarProveedorService,
+} from "../../../services/provedores.js";
+import { obtenerCategorias } from "../../../services/categoria";
+import { Toast, Button, Modal } from "react-bootstrap";
+import '../../../styles/dashProveedores.css'
 
 function DashProveedores() {
   const [proveedores, setProveedores] = useState([]);
-  const [categorias, setCategorias] = useState([]);
-  const [nombre, setNombre] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [email, setEmail] = useState("");
-  const [direccion, setDireccion] = useState("");
-  const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
-  const [estado, setEstado] = useState("activo");
-  const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [proveedorEditar, setProveedorEditar] = useState(null);
-  const [showModal, setShowModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
-  const [toastType, setToastType] = useState('success');
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("success");
+  const [formData, setFormData] = useState({
+    nombre_proveedor: "",
+    telefono_proveedor: "",
+    email_proveedor: "",
+    direccion_proveedor: "",
+    categorias: [],
+  });
+  const [editingProviderId, setEditingProviderId] = useState(null);
+  const [categorias, setCategorias] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
-  // Cargar proveedores y categorías al iniciar
   useEffect(() => {
     if (token) {
       listarProveedores();
-      cargarCategorias();  // Cargar las categorías desde la API
+      loadCategorias();
     } else {
       window.location.href = "/login";
     }
   }, [token]);
 
+  const loadCategorias = async () => {
+    try {
+      const data = await obtenerCategorias();
+      setCategorias(data);
+    } catch (error) {
+      setToastMessage("Error al cargar las categorías");
+      setToastType("error");
+      setShowToast(true);
+    }
+  };
+
   const listarProveedores = async () => {
     try {
       const data = await listarProveedoresService(token);
       setProveedores(data);
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  const cargarCategorias = async () => {
-    try {
-      const data = await obtenerCategorias();
-      setCategorias(data);  // Asumimos que la API retorna un array de categorías
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  const agregarProveedor = async (e) => {
-    e.preventDefault();
-
-    const nuevoProveedor = {
-      nombre_proveedor: nombre,
-      telefono_proveedor: telefono,
-      email_proveedor: email,
-      direccion_proveedor: direccion,
-      categorias: categoriasSeleccionadas,  // Pasamos las categorías seleccionadas
-      id_user_creacion: 1,
-    };
-
-    try {
-      const response = await agregarProveedorService(nuevoProveedor, token);
-      setProveedores([...proveedores, response.proveedor]);
-      mostrarToast('Proveedor agregado exitosamente', 'success');
-      resetFormulario();
-      setShowModal(false);
-    } catch (err) {
-      setError(err.message);
-      mostrarToast('Error al agregar proveedor', 'error');
-    }
-  };
-
-  const editarProveedor = async (id, e) => {
-    e.preventDefault();
-
-    const proveedorEditado = {
-      nombre_proveedor: nombre,
-      telefono_proveedor: telefono,
-      email_proveedor: email,
-      direccion_proveedor: direccion,
-      categorias: categoriasSeleccionadas,  // Nuevas categorías a asociar al proveedor
-    };
-
-    try {
-      const response = await editarProveedorService(id, proveedorEditado, token);
-      setProveedores(proveedores.map((p) => (p.id === id ? response.proveedor : p)));
-      mostrarToast('Proveedor editado exitosamente', 'success');
-      setProveedorEditar(null);
-      setShowModal(false);
-    } catch (err) {
-      setError(err.message);
-      mostrarToast('Error al editar proveedor', 'error');
+    } catch (error) {
+      setToastMessage("Error al cargar los proveedores");
+      setToastType("error");
+      setShowToast(true);
     }
   };
 
   const cambiarEstadoProveedor = async (id, estado) => {
     try {
-      const response = await cambiarEstadoProveedorService(id, estado, token);
-      setProveedores(proveedores.map((p) => (p.id === id ? response.proveedor : p)));
-      mostrarToast(`Estado del proveedor cambiado a ${estado}`, 'success');
-    } catch (err) {
-      setError(err.message);
-      mostrarToast('Error al cambiar estado del proveedor', 'error');
+      await cambiarEstadoProveedorService(id, estado, token);
+      setProveedores((prevProveedores) =>
+        prevProveedores.map((p) =>
+          p.id === id ? { ...p, estado_proveedor: estado } : p
+        )
+      );
+      setToastMessage(`Estado del proveedor cambiado a ${estado}`);
+      setToastType("success");
+      setShowToast(true);
+    } catch (error) {
+      setToastMessage("Error al cambiar estado del proveedor");
+      setToastType("error");
+      setShowToast(true);
     }
   };
 
-  const mostrarToast = (mensaje, tipo) => {
-    setToastMessage(mensaje);
-    setToastType(tipo);
-    setShowToast(true);
+  const handleInputChange = (e) => {
+    const { name, value, type, selectedOptions } = e.target;
+
+    if (type === "select-multiple") {
+      const selectedValues = Array.from(selectedOptions).map((option) => option.value);
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: selectedValues,
+      }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
-  const resetFormulario = () => {
-    setNombre("");
-    setTelefono("");
-    setEmail("");
-    setDireccion("");
-    setCategoriasSeleccionadas([]);
-    setEstado("activo");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (editingProviderId) {
+        await editarProveedorService(editingProviderId, formData, token);
+        setToastMessage("Proveedor editado con éxito");
+      } else {
+        await agregarProveedorService(formData, token);
+        setToastMessage("Proveedor agregado con éxito");
+      }
+      setToastType("success");
+      setShowToast(true);
+
+      setFormData({
+        nombre_proveedor: "",
+        telefono_proveedor: "",
+        email_proveedor: "",
+        direccion_proveedor: "",
+        categorias: [],
+      });
+      setEditingProviderId(null);
+      setShowModal(false);
+
+      listarProveedores();
+    } catch (error) {
+      setToastMessage(error.message || "Error al procesar la solicitud");
+      setToastType("error");
+      setShowToast(true);
+    }
   };
 
-  const handleEditForm = (proveedor) => {
-    setProveedorEditar(proveedor);
-    setNombre(proveedor.nombre_proveedor);
-    setTelefono(proveedor.telefono_proveedor);
-    setEmail(proveedor.email_proveedor);
-    setDireccion(proveedor.direccion_proveedor);
-    setCategoriasSeleccionadas(proveedor.categorias || []);  // Asignar las categorías seleccionadas al editar
-    setEstado(proveedor.estado_proveedor);
+  const handleEdit = (proveedor) => {
+    setEditingProviderId(proveedor.id);
+    setFormData({
+      nombre_proveedor: proveedor.nombre_proveedor,
+      telefono_proveedor: proveedor.telefono_proveedor,
+      email_proveedor: proveedor.email_proveedor,
+      direccion_proveedor: proveedor.direccion_proveedor,
+      categorias: proveedor.categorias ? proveedor.categorias.map((cat) => cat.id) : [],
+    });
     setShowModal(true);
   };
 
-  const handleCloseModal = () => {
-    setProveedorEditar(null);
-    setShowModal(false);
-    resetFormulario();
-  };
-
   return (
-    <div>
-      <h2>Dashboard de Proveedores</h2>
+    <div className="dash-proveedores-container">
+      <h2 className="page-title">Dashboard de Proveedores</h2>
+      <Button onClick={() => setShowModal(true)} className="btn-crear mb-3">Agregar Proveedor</Button>
 
-      <Button variant="primary" onClick={() => setShowModal(true)}>
-        Agregar Proveedor
-      </Button>
+      <h3 className="section-title">Lista de Proveedores</h3>
+      <div className="table-responsive">
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Teléfono</th>
+              <th>Email</th>
+              <th>Dirección</th>
+              <th>Categorías</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {proveedores.map((proveedor) => (
+              <tr key={proveedor.id}>
+                <td>{proveedor.nombre_proveedor}</td>
+                <td>{proveedor.telefono_proveedor}</td>
+                <td>{proveedor.email_proveedor}</td>
+                <td>{proveedor.direccion_proveedor}</td>
+                <td>{proveedor.categorias ? proveedor.categorias.map((categoria) => categoria.nombre_categoria).join(", ") : "No tiene categorías"}</td>
+                <td>{proveedor.estado_proveedor}</td>
+                <td>
+                  <Button
+                    variant={proveedor.estado_proveedor === "activo" ? "danger" : "success"}
+                    onClick={() =>
+                      cambiarEstadoProveedor(proveedor.id, proveedor.estado_proveedor === "activo" ? "inactivo" : "activo")
+                    }
+                    className="btn btn-info btn-sm"  // Reduce the size of the button
+                  >
+                    {proveedor.estado_proveedor === "activo" ? "Desactivar" : "Activar"}
+                  </Button>
 
-      {/* Modal para agregar y editar proveedores */}
-      <Modal show={showModal} onHide={handleCloseModal}>
+                  <Button
+                    variant="warning"  // A more subtle color for editing
+                    onClick={() => handleEdit(proveedor)}
+                    className="btn btn-warning btn-sm"  // Smaller size for the button
+                  >
+                    Editar
+                  </Button>
+
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Header closeButton>
-          <Modal.Title>{proveedorEditar ? 'Editar Proveedor' : 'Agregar Proveedor'}</Modal.Title>
+          <Modal.Title>{editingProviderId ? "Editar Proveedor" : "Agregar Proveedor"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={proveedorEditar ? (e) => editarProveedor(proveedorEditar.id, e) : agregarProveedor}>
-            <Form.Group controlId="formNombre">
-              <Form.Label>Nombre del Proveedor</Form.Label>
-              <Form.Control
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Nombre</label>
+              <input
                 type="text"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
-                placeholder="Nombre del proveedor"
+                name="nombre_proveedor"
+                value={formData.nombre_proveedor}
+                onChange={handleInputChange}
+                className="form-control"
                 required
               />
-            </Form.Group>
-
-            <Form.Group controlId="formTelefono">
-              <Form.Label>Teléfono</Form.Label>
-              <Form.Control
+            </div>
+            <div className="form-group">
+              <label>Teléfono</label>
+              <input
                 type="text"
-                value={telefono}
-                onChange={(e) => setTelefono(e.target.value)}
-                placeholder="Teléfono del proveedor"
+                name="telefono_proveedor"
+                value={formData.telefono_proveedor}
+                onChange={handleInputChange}
+                className="form-control"
                 required
               />
-            </Form.Group>
-
-            <Form.Group controlId="formEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
+            </div>
+            <div className="form-group">
+              <label>Email</label>
+              <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email del proveedor"
+                name="email_proveedor"
+                value={formData.email_proveedor}
+                onChange={handleInputChange}
+                className="form-control"
                 required
               />
-            </Form.Group>
-
-            <Form.Group controlId="formDireccion">
-              <Form.Label>Dirección</Form.Label>
-              <Form.Control
+            </div>
+            <div className="form-group">
+              <label>Dirección</label>
+              <input
                 type="text"
-                value={direccion}
-                onChange={(e) => setDireccion(e.target.value)}
-                placeholder="Dirección del proveedor"
+                name="direccion_proveedor"
+                value={formData.direccion_proveedor}
+                onChange={handleInputChange}
+                className="form-control"
                 required
               />
-            </Form.Group>
-
-            {/* Campo para seleccionar las categorías */}
-            <Form.Group controlId="formCategorias">
-              <Form.Label>Categorías</Form.Label>
-              <Form.Control
-                as="select"
+            </div>
+            <div className="form-group">
+              <label>Categorías</label>
+              <select
                 multiple
-                value={categoriasSeleccionadas}
-                onChange={(e) => setCategoriasSeleccionadas(Array.from(e.target.selectedOptions, option => option.value))}
+                name="categorias"
+                value={formData.categorias}
+                onChange={handleInputChange}
+                className="form-control"
               >
                 {categorias.map((categoria) => (
                   <option key={categoria.ID} value={categoria.ID}>
-                    {categoria.NOMBRE_CATEGORIA} {/* Asumimos que la API retorna 'nombre' y 'id' */}
+                    {categoria.NOMBRE_CATEGORIA}
                   </option>
                 ))}
-              </Form.Control>
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-              {proveedorEditar ? 'Editar Proveedor' : 'Agregar Proveedor'}
-            </Button>
-          </Form>
+              </select>
+            </div>
+            <button type="submit" className="btn btn-primary">
+              {editingProviderId ? "Guardar Cambios" : "Agregar Proveedor"}
+            </button>
+          </form>
         </Modal.Body>
       </Modal>
 
-      {/* Lista de proveedores en tabla */}
-      <h3>Lista de Proveedores</h3>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>Email</th>
-            <th>Dirección</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {proveedores.map((proveedor) => (
-            <tr key={proveedor.id}>
-              <td>{proveedor.nombre_proveedor}</td>
-              <td>{proveedor.telefono_proveedor}</td>
-              <td>{proveedor.email_proveedor}</td>
-              <td>{proveedor.direccion_proveedor}</td>
-              <td>{proveedor.estado_proveedor}</td>
-              <td>
-                <Button variant="warning" onClick={() => handleEditForm(proveedor)}>Editar</Button>
-                <Button
-                  variant={proveedor.estado_proveedor === 'activo' ? 'danger' : 'success'}
-                  onClick={() => cambiarEstadoProveedor(proveedor.id, proveedor.estado_proveedor === 'activo' ? 'inactivo' : 'activo')}
-                >
-                  {proveedor.estado_proveedor === 'activo' ? 'Desactivar' : 'Activar'}
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {/* Toast para mostrar mensajes */}
-      <Toast show={showToast} onClose={() => setShowToast(false)} bg={toastType === 'error' ? 'danger' : 'success'} delay={3000} autohide>
+      <Toast
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        delay={3000}
+        autohide
+        bg={toastType === "success" ? "success" : "danger"}
+      >
         <Toast.Body>{toastMessage}</Toast.Body>
       </Toast>
     </div>

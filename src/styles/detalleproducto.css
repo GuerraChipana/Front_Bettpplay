@@ -1,0 +1,121 @@
+.detalle-producto {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.contenido-producto {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.imagen {
+    flex: 0 0 40%;
+}
+
+.imagen img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.informacion {
+    flex: 1;
+    max-width: 50%;
+}
+
+.informacion h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: left;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.informacion .descripcion {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.informacion p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.informacion .precio {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #e74c3c;
+    margin-top: 15px;
+}
+
+.informacion .precio span {
+    font-size: 1.3rem;
+    color: #2c3e50;
+}
+
+.botones {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.boton {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+    background-color: #2980b9;
+}
+
+@media (max-width: 768px) {
+    .contenido-producto {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .imagen {
+        flex: 0 0 60%;
+        margin-bottom: 20px;
+    }
+
+    .informacion {
+        flex: 1;
+        text-align: center;
+    }
+
+    .informacion h2 {
+        font-size: 2rem;
+    }
+
+    .informacion p {
+        font-size: 1.1rem;
+    }
+
+    .botones {
+        flex-direction: column;
+        align-items: center;
+    }
+}
