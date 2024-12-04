@@ -114,7 +114,7 @@ const DashCategorias = () => {
         await crearCategoria(formData, imagen);
         showSuccessMessage('Categoría creada correctamente');
       } else {
-        await editarCategoria(currentCategory.ID, formData, imagen);
+        await editarCategoria(currentCategory.id, formData, imagen);
         showSuccessMessage('Categoría actualizada correctamente');
       }
       obtenerTodasCategorias();
