@@ -239,8 +239,8 @@ function DashProductos() {
                 <td>{producto.precio_producto}</td>
                 <td>
                   {categorias.find(
-                    (categoria) => categoria.ID === producto.id_categoria
-                  )?.NOMBRE_CATEGORIA}
+                    (categoria) => categoria.id === producto.id_categoria
+                  )?.nombre_categoria}
                 </td>
                 <td>{producto.estado_producto}</td>
                 <td>
@@ -327,8 +327,8 @@ function DashProductos() {
               >
                 <option value="">Seleccionar categoría</option>
                 {categorias.map((categoria) => (
-                  <option key={categoria.ID} value={categoria.ID}>
-                    {categoria.NOMBRE_CATEGORIA}
+                  <option key={categoria.id} value={categoria.id}>
+                    {categoria.nombre_categoria}
                   </option>
                 ))}
               </Form.Control>

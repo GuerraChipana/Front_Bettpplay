@@ -38,6 +38,7 @@ function DashProveedores() {
   const loadCategorias = async () => {
     try {
       const data = await obtenerCategorias();
+      console.log('cateforias :',data)
       setCategorias(data);
     } catch (error) {
       setToastMessage("Error al cargar las categorías");
@@ -249,7 +250,7 @@ function DashProveedores() {
                 className="form-control"
               >
                 {categorias.map((categoria) => (
-                  <option key={categoria.ID} value={categoria.ID}>
+                  <option key={categoria.id} value={categoria.id}>
                     {categoria.NOMBRE_CATEGORIA}
                   </option>
                 ))}

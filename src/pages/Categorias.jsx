@@ -35,10 +35,10 @@ function Categorias() {
                     categorias.map((categoria) => (
                         <div className="categoria-card" key={categoria.ID}>
                             <div className="categoria-image">
-                                {categoria.IMAGEN_CATEGORIA ? (
+                                {categoria.imagen_categoria ? (
                                     <img
-                                        src={categoria.IMAGEN_CATEGORIA}
-                                        alt={categoria.NOMBRE_CATEGORIA}
+                                        src={categoria.imagen_categoria}
+                                        alt={categoria.nombre_categoria}
                                         className="categoria-img"
                                     />
                                 ) : (
@@ -48,8 +48,8 @@ function Categorias() {
                                 )}
                             </div>
                             <div className="categoria-info">
-                                <h3 className="categoria-name">{categoria.NOMBRE_CATEGORIA}</h3>
-                                <p className="categoria-detail">{categoria.DETALLE_CATEGORIA}</p>
+                                <h3 className="categoria-name">{categoria.nombre_categoria}</h3>
+                                <p className="categoria-detail">{categoria.detalle_categoria}</p>
                                 <Link to={`/productos/${categoria.ID}`} className="categoria-link">
                                     Ver productos
                                 </Link>

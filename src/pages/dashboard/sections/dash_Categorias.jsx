@@ -45,7 +45,7 @@ const DashCategorias = () => {
     try {
       await cambiarEstadoCategoria(id, estado);
       setCategorias(categorias.map(categoria =>
-        categoria.ID === id ? { ...categoria, ESTADO_CATEGORIA: estado } : categoria
+        categoria.ID === id ? { ...categoria, estado_categoria: estado } : categoria
       ));
       showSuccessMessage('Estado actualizado con éxito');
     } catch (error) {
@@ -82,8 +82,8 @@ const DashCategorias = () => {
     setModalMode(categoria ? 'edit' : 'create');
     setCurrentCategory(categoria);
     setFormData({
-      nombre_categoria: categoria ? categoria.NOMBRE_CATEGORIA : '',
-      detalle_categoria: categoria ? categoria.DETALLE_CATEGORIA : '',
+      nombre_categoria: categoria ? categoria.nombre_categoria : '',
+      detalle_categoria: categoria ? categoria.detalle_categoria : '',
       imagen: null,
     });
     setModalOpen(true);
@@ -168,14 +168,14 @@ const DashCategorias = () => {
             {categorias.map(categoria => (
               <tr key={categoria.ID}>
                 <td>{categoria.ID}</td>
-                <td><img src={categoria.IMAGEN_CATEGORIA} alt={categoria.NOMBRE_CATEGORIA} /></td>
-                <td>{categoria.NOMBRE_CATEGORIA}</td>
-                <td>{categoria.DETALLE_CATEGORIA}</td>
-                <td>{categoria.ESTADO_CATEGORIA}</td>
+                <td><img src={categoria.imagen_categoria} alt={categoria.nombre_categoria} /></td>
+                <td>{categoria.nombre_categoria}</td>
+                <td>{categoria.detalle_categoria}</td>
+                <td>{categoria.estado_categoria}</td>
                 <td>
                   <button onClick={() => openModal(categoria)} className="btn btn-warning btn-sm">Editar</button>
-                  <button onClick={() => handleCambiarEstado(categoria.ID, categoria.ESTADO_CATEGORIA === 'activo' ? 'descontinuado' : 'activo')} className="btn btn-info btn-sm">
-                    {categoria.ESTADO_CATEGORIA === 'activo' ? 'Descontinuar' : 'Activar'}
+                  <button onClick={() => handleCambiarEstado(categoria.ID, categoria.estado_categoria === 'activo' ? 'descontinuado' : 'activo')} className="btn btn-info btn-sm">
+                    {categoria.estado_categoria === 'activo' ? 'Descontinuar' : 'Activar'}
                   </button>
                 </td>
               </tr>
