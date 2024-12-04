@@ -45,7 +45,7 @@ const DashCategorias = () => {
     try {
       await cambiarEstadoCategoria(id, estado);
       setCategorias(categorias.map(categoria =>
-        categoria.ID === id ? { ...categoria, estado_categoria: estado } : categoria
+        categoria.id === id ? { ...categoria, estado_categoria: estado } : categoria
       ));
       showSuccessMessage('Estado actualizado con éxito');
     } catch (error) {
@@ -166,15 +166,15 @@ const DashCategorias = () => {
           </thead>
           <tbody>
             {categorias.map(categoria => (
-              <tr key={categoria.ID}>
-                <td>{categoria.ID}</td>
+              <tr key={categoria.id}>
+                <td>{categoria.id}</td>
                 <td><img src={categoria.imagen_categoria} alt={categoria.nombre_categoria} /></td>
                 <td>{categoria.nombre_categoria}</td>
                 <td>{categoria.detalle_categoria}</td>
                 <td>{categoria.estado_categoria}</td>
                 <td>
                   <button onClick={() => openModal(categoria)} className="btn btn-warning btn-sm">Editar</button>
-                  <button onClick={() => handleCambiarEstado(categoria.ID, categoria.estado_categoria === 'activo' ? 'descontinuado' : 'activo')} className="btn btn-info btn-sm">
+                  <button onClick={() => handleCambiarEstado(categoria.id, categoria.estado_categoria === 'activo' ? 'descontinuado' : 'activo')} className="btn btn-info btn-sm">
                     {categoria.estado_categoria === 'activo' ? 'Descontinuar' : 'Activar'}
                   </button>
                 </td>
