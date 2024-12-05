@@ -49,7 +49,7 @@ const Homepage = () => {
         <h2 className="homepage-specialties-title">Explora nuestras categorías</h2>
         <div className="homepage-specialty-container">
           <Link to={`/productos/4`} className="homepage-specialty">
-            <img src="/public/img/images.jpeg" alt="Electrónica" />
+            <img src="/img/images.jpeg" alt="Electrónica" />
             <i className="fas fa-tv icon"></i>
             <div className="homepage-text-content">
               <h4>Electrónica de Última Generación</h4>
@@ -73,7 +73,7 @@ const Homepage = () => {
             </div>
           </Link>
           <Link to="productos/7" className="homepage-specialty">
-            <img src="/public/img/aaaa.jpeg" alt="Entretenimiento" />
+            <img src="/img/aaaa.jpeg" alt="Entretenimiento" />
             <i className="fas fa-gamepad icon"></i>
             <div className="homepage-text-content">
               <h4>Entretenimiento y Deportes</h4>

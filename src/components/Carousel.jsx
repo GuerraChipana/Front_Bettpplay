@@ -3,9 +3,9 @@ import '../styles/carusel.css';  // Asegúrate de incluir los estilos del carrus
 
 const Carousel = () => {
   const images = [
-    '/public/elefcctricos.png', // Cambia estos con las imágenes que necesites
-    '/public/caa2.png',
-    '/public/caa.jpg'
+    '/elefcctricos.png', // Cambia estos con las imágenes que necesites
+    '/caa2.png',
+    '/caa.jpg'
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
