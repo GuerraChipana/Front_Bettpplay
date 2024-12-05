@@ -6,7 +6,7 @@ import Carousel from '../components/Carousel';
 const Homepage = () => {
   return (
     <div className="homepage-container">
-      {/* Sección de Carousel */}
+      {/* Sección de Carouseñll */}
       <Carousel />
 
       {/* Sección Conócenos */}
