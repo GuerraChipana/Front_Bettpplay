@@ -52,12 +52,12 @@ function Dashboard() {
               {!collapsed && <span className="dashboard-nav-text">Abastecimiento</span>}
             </Link>
           </li>
-          <li className="dashboard-nav-item">
+          {/* <li className="dashboard-nav-item">
             <Link to="/dashboard/Usuarios" className="dashboard-nav-link" title="Usuarios">
               <FontAwesomeIcon icon={faUsers} size="lg" />
               {!collapsed && <span className="dashboard-nav-text">Usuarios</span>}
             </Link>
-          </li>
+          </li> */}
           <li className="dashboard-nav-item">
             <button className="dashboard-nav-link" onClick={logout}>
               <FontAwesomeIcon icon={faSignOutAlt} size="lg" />

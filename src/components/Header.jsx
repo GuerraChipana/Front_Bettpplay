@@ -28,17 +28,12 @@ const Header = ({ carrito }) => {
                     <Link to="/Categorias">Categorías</Link>
                     <Link to="/productos">Productos</Link>
                 </nav>
-
-                <div className="user-action">
-                    <FontAwesomeIcon icon={faUser} />
-                    <Link to="/Login">Iniciar / Registrar</Link>
-                </div>
-
                 <div className="cart-icon">
                     <Link to="/carrito">
                         <FontAwesomeIcon icon={faShoppingCart} size="lg" />
-                        
-                        {carrito.length > 0 && <span className="cart-count">{carrito.length}</span>}
+                        {carrito.length > 0 && (
+                            <span className="cart-count">{carrito.length}</span>
+                        )}
                     </Link>
                 </div>
 

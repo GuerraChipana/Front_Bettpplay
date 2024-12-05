@@ -2,16 +2,21 @@
     font-family: Arial, sans-serif;
     margin: 20px;
     color: #333;
+    display: flex;
+    justify-content: space-between; /* Para alinear el formulario y la tabla en dos columnas */
+    gap: 30px; /* Espacio entre el formulario y la tabla */
 }
 
 .dash-abastecimiento-title {
     font-size: 24px;
     margin-bottom: 20px;
+    text-align: center; /* Centra el título */
 }
 
 .dash-abastecimiento-form {
     display: flex;
     flex-direction: column;
+    width: 45%; /* Hace que el formulario ocupe un 45% del contenedor */
 }
 
 .dash-abastecimiento-form-group {
@@ -29,6 +34,7 @@
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    width: 100%; /* Hace que los inputs y selects ocupen el 100% de su contenedor */
 }
 
 .dash-abastecimiento-button {
@@ -40,6 +46,7 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 100%; /* Hace que el botón ocupe el 100% de su contenedor */
 }
 
 .dash-abastecimiento-button:hover {
@@ -49,10 +56,12 @@
 .dash-abastecimiento-subtitle {
     font-size: 20px;
     margin-top: 30px;
+    text-align: center; /* Centra el subtítulo */
+    margin-bottom: 20px;
 }
 
 .dash-abastecimiento-table {
-    width: 100%;
+    width: 50%; /* La tabla ocupa el 50% del contenedor */
     border-collapse: collapse;
     margin-top: 20px;
 }
@@ -75,4 +84,20 @@
 
 .dash-abastecimiento-table tr:hover {
     background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+    .dash-abastecimiento-container {
+        flex-direction: column; /* En pantallas más pequeñas, la disposición será en columna */
+        align-items: center;
+    }
+
+    .dash-abastecimiento-form {
+        width: 100%; /* El formulario ocupará el 100% en pantallas pequeñas */
+    }
+
+    .dash-abastecimiento-table {
+        width: 100%; /* La tabla también ocupará el 100% en pantallas pequeñas */
+        margin-top: 20px;
+    }
 }

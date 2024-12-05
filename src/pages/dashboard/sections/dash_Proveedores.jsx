@@ -38,7 +38,7 @@ function DashProveedores() {
   const loadCategorias = async () => {
     try {
       const data = await obtenerCategorias();
-      console.log('cateforias :',data)
+      console.log('cateforias :', data)
       setCategorias(data);
     } catch (error) {
       setToastMessage("Error al cargar las categorías");
@@ -80,7 +80,7 @@ function DashProveedores() {
     const { name, value, type, selectedOptions } = e.target;
 
     if (type === "select-multiple") {
-      const selectedValues = Array.from(selectedOptions).map((option) => option.value);
+      const selectedValues = Array.from(selectedOptions).map((option) => Number(option.value));  // Ensure values are numbers
       setFormData((prevState) => ({
         ...prevState,
         [name]: selectedValues,
@@ -92,6 +92,7 @@ function DashProveedores() {
       }));
     }
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -138,7 +139,7 @@ function DashProveedores() {
 
   return (
     <div className="dash-proveedores-container">
-      <h2 className="page-title">Dashboard de Proveedores</h2>
+      <h2 className="page-title">Gestión de Proveedores</h2>
       <Button onClick={() => setShowModal(true)} className="btn-crear mb-3">Agregar Proveedor</Button>
 
       <h3 className="section-title">Lista de Proveedores</h3>
@@ -251,7 +252,7 @@ function DashProveedores() {
               >
                 {categorias.map((categoria) => (
                   <option key={categoria.id} value={categoria.id}>
-                    {categoria.NOMBRE_CATEGORIA}
+                    {categoria.nombre_categoria}
                   </option>
                 ))}
               </select>

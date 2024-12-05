@@ -1,134 +1,151 @@
-/* Contenedor principal */
-.categorias-container {
+/* Contenedor principal para Categorías */
+.categorias-container-plaza {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  font-family: 'Roboto', sans-serif;
-  background-color: #f7f7f7;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
 }
 
 /* Título */
-.categorias-header {
+.categorias-header-plaza {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
-  margin-bottom: 30px;
-  color: #333;
+  margin-bottom: 40px;
+  color: #222;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 /* Estilos de carga y error */
-.loading {
+.loading-plaza {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #ff6600;
 }
 
-.error {
+.error-plaza {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 500;
-  color: #ff3333;
+  color: #e60000;
 }
 
 /* Grid de categorías */
-.categorias-grid {
+.categorias-grid-plaza {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Cambia según el tamaño */
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
   margin-top: 20px;
 }
 
 /* Estilo de las tarjetas de categorías */
-.categoria-card {
+.categoria-card-plaza {
   background-color: #fff;
-  border-radius: 15px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: 350px; /* Altura fija para las tarjetas */
-  width: 100%; /* Se ajusta al contenedor */
+  height: 380px; /* Altura fija para las tarjetas */
 }
 
 /* Efecto hover para las tarjetas */
-.categoria-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+.categoria-card-plaza:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2);
 }
 
 /* Imagen de la categoría */
-.categoria-image {
-  flex-shrink: 0; /* Impide que la imagen se reduzca */
-  height: 200px; /* Altura fija para la imagen */
+.categoria-image-plaza {
+  flex-shrink: 0;
+  height: 220px;
   position: relative;
   overflow: hidden;
 }
 
-.categoria-img {
+.categoria-img-plaza {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ajusta la imagen sin distorsionar */
-  transition: transform 0.3s ease;
+  object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
 /* Animación de imagen al pasar el mouse */
-.categoria-card:hover .categoria-img {
+.categoria-card-plaza:hover .categoria-img-plaza {
   transform: scale(1.1); /* Efecto de zoom */
 }
 
 /* Información de la categoría */
-.categoria-info {
-  padding: 15px;
+.categoria-info-plaza {
+  padding: 20px;
   text-align: center;
-  flex-grow: 1; /* Permite que la información ocupe el espacio restante */
+  flex-grow: 1;
 }
 
 /* Nombre de la categoría */
-.categoria-name {
-  font-size: 1.5rem;
+.categoria-name-plaza {
+  font-size: 1.6rem;
   font-weight: 600;
   color: #333;
-  margin-bottom: 10px;
-}
-
-/* Detalle de la categoría */
-.categoria-detail {
-  font-size: 1.1rem;
-  color: #777;
   margin-bottom: 15px;
 }
 
+/* Detalle de la categoría */
+.categoria-detail-plaza {
+  font-size: 1.2rem;
+  color: #888;
+  margin-bottom: 20px;
+}
+
 /* Enlace para ver productos */
-.categoria-link {
+.categoria-link-plaza {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 12px 25px;
   background-color: #ff6600;
   color: #fff;
   text-decoration: none;
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
   font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.4s ease, transform 0.4s ease;
 }
 
-.categoria-link:hover {
+.categoria-link-plaza:hover {
   background-color: #e65c00;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
-/* Placeholder */
-.categoria-placeholder {
+/* Placeholder para imagen */
+.categoria-placeholder-plaza {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
+  background-color: #f4f4f4;
   height: 100%;
   color: #aaa;
-  font-size: 3rem;
+  font-size: 3.5rem;
   border-radius: 10px;
+}
+
+/* Fondo y bordes de las tarjetas */
+.categoria-card-plaza {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 400px; /* Ajustar a una altura estándar */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.categoria-card-plaza:hover {
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
 }

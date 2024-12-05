@@ -1,55 +1,72 @@
 /* Contenedor principal */
 .productos-container {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
-  padding: 20px;
-  background-color: #f9f9f9;
-  font-family: 'Poppins', sans-serif;
+  padding: 30px;
+  background-color: #f4f4f4;
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
 }
 
 /* Contenedor de productos y filtros */
 .productos-contenido {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
+  max-width: 1200px;
 }
 
 /* Barra lateral de filtros */
 .filtros {
-  width: 250px; /* Ajustamos el tamaño del filtro */
+  width: 250px;
   background-color: #fff;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin-right: 20px; /* Separación entre filtro y productos */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-right: 30px;
+  margin-bottom: 30px;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Estilo para el select de marca (más compacto) */
-.filtro {
-  width: 100%;
-  padding: 10px 15px;
-  border: 2px solid #ddd;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  background-color: #fff;
+.filtros:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Título del filtro */
+.filtros h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
   color: #333;
   margin-bottom: 15px;
+}
+
+/* Estilo para el select de marca */
+.filtro {
+  width: 100%;
+  padding: 12px 18px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  margin-bottom: 20px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .filtro:focus {
   outline: none;
   border-color: #ff7043;
-  box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.3);
+  box-shadow: 0 0 5px rgba(255, 112, 67, 0.4);
 }
 
 /* Productos Grid */
 .productos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajuste de tamaño más pequeño */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
-  flex-grow: 1; /* Los productos ocupan el espacio restante */
+  flex-grow: 1;
 }
 
 /* Card de producto */
@@ -57,22 +74,24 @@
   background-color: #fff;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   cursor: pointer;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .producto-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  background-color: #fafafa;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  background-color: #f8f8f8;
 }
 
 /* Imagen de producto */
 .producto-image {
   position: relative;
-  padding-top: 60%; /* Proporción ajustada */
+  padding-top: 60%; /* Mantiene la relación de aspecto */
   overflow: hidden;
 }
 
@@ -98,7 +117,7 @@
 
 .producto-name {
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #333;
   margin-bottom: 8px;
 }
@@ -114,6 +133,24 @@
   font-weight: 700;
   color: #ff7043;
   margin-top: 8px;
+}
+
+/* Botón de ver más */
+.btn-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff7043;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #e65c00;
+  transform: translateY(-3px);
 }
 
 /* Mensajes de carga y error */
@@ -139,7 +176,7 @@
   background-color: #eaeaea;
   height: 100%;
   color: #aaa;
-  font-size: 3rem;
+  font-size: 2rem;
   border-radius: 15px;
 }
 

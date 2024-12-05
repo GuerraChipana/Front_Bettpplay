@@ -140,7 +140,6 @@ function DashAbastecimiento() {
 
     return (
         <div className="dash-abastecimiento-container">
-            <h2 className="dash-abastecimiento-title">Registrar Abastecimiento</h2>
             <form className="dash-abastecimiento-form" onSubmit={handleSubmit}>
                 {/* Categoría */}
                 <div className="dash-abastecimiento-form-group">
@@ -248,9 +247,9 @@ function DashAbastecimiento() {
                 <button type="submit" className="dash-abastecimiento-button">Registrar Abastecimiento</button>
             </form>
 
-            <h2 className="dash-abastecimiento-subtitle">Abastecimientos Registrados</h2>
             {/* Tabla de abastecimientos */}
             <table className="dash-abastecimiento-table">
+                
                 <thead>
                     <tr>
                         <th>Proveedor</th>

@@ -172,7 +172,7 @@ function DashProductos() {
 
   return (
     <div className="container dash-productos">
-      <h1 className="my-4">Dashboard de Productos</h1>
+      <h1 className="my-">Gestión de Productos</h1>
 
       {error && <Alert variant="danger">{error}</Alert>}
 
@@ -199,11 +199,9 @@ function DashProductos() {
         </Form.Control>
       </div>
 
-      <Button variant="success" onClick={handleCrear} className="mb-3 btn-crear">
+      <Button variant="success" onClick={handleCrear} className="btn-crear">
         Crear Nuevo Producto
       </Button>
-
-      <h2 className="my-4">Productos</h2>
       <div className="table-responsive">
         <table className="table table-striped">
           <thead>
