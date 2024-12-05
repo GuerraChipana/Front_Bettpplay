@@ -14,10 +14,10 @@ const Header = ({ carrito }) => {
                 <div className="logo">
                     <Link to="/">
                         <img
-                            src="src/assets/img/logo_DFEEC.png"
+                            src="/logo_3.png"
                             alt="Logo"
-                            width="80"
-                            height="80"
+                            width="100"
+                            height="100"
                         />
                     </Link>
                 </div>
@@ -67,6 +67,7 @@ const HeaderContainer = styled.header`
 
     .logo a img {
         display: block;
+        margin-button:-2px;
     }
 
     .nav {

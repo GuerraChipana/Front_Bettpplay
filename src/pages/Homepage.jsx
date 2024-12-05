@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 import Carousel from '../components/Carousel';
+import { obtenerProductosActivosPorCategoria } from '../services/producto';
 
 const Homepage = () => {
   return (
@@ -38,7 +39,7 @@ const Homepage = () => {
 
           {/* Imagen del centro comercial */}
           <div className="homepage-image-container">
-            <img src="/public/image.png" alt="Centro Comercial Futurista" />
+            <img src="/image.png" alt="Centro Comercial Futurista" />
           </div>
         </div>
       </section>
@@ -47,7 +48,7 @@ const Homepage = () => {
       <section id="homepage-productos" className="homepage-specialties">
         <h2 className="homepage-specialties-title">Explora nuestras categorías</h2>
         <div className="homepage-specialty-container">
-          <Link to="#" className="homepage-specialty">
+          <Link to={`/productos/4`} className="homepage-specialty">
             <img src="/public/img/images.jpeg" alt="Electrónica" />
             <i className="fas fa-tv icon"></i>
             <div className="homepage-text-content">
@@ -55,23 +56,23 @@ const Homepage = () => {
               <p>Descubre gadgets, dispositivos inteligentes y tecnología avanzada para tu hogar y oficina.</p>
             </div>
           </Link>
-          <Link to="#" className="homepage-specialty">
-            <img src="/public/img/8886_1_736993.jpg" alt="Moda" />
+          <Link to="productos/3" className="homepage-specialty">
+            <img src="/img/8886_1_736993.jpg" alt="Moda" />
             <i className="fas fa-tshirt icon"></i>
             <div className="homepage-text-content">
               <h4>Moda Innovadora</h4>
               <p>Encuentra las últimas tendencias en ropa futurista para todos los gustos.</p>
             </div>
           </Link>
-          <Link to="#" className="homepage-specialty">
-            <img src="/public/img/casa.jpeg" alt="Gastronomía" />
+          <Link to="productos/1" className="homepage-specialty">
+            <img src="img/casa.jpeg" alt="Casa" />
             <i className="fas fa-pizza-slice icon"></i>
             <div className="homepage-text-content">
               <h4>Artefacos para el hogas</h4>
               <p>Encuentra todo lo que necesites para remodelar tu sala.</p>
             </div>
           </Link>
-          <Link to="#" className="homepage-specialty">
+          <Link to="productos/7" className="homepage-specialty">
             <img src="/public/img/aaaa.jpeg" alt="Entretenimiento" />
             <i className="fas fa-gamepad icon"></i>
             <div className="homepage-text-content">

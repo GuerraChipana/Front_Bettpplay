@@ -33,7 +33,7 @@ function Categorias() {
             <div className="categorias-grid-plaza">
                 {categorias.length > 0 ? (
                     categorias.map((categoria) => (
-                        <div className="categoria-card-plaza" key={categoria.ID}>
+                        <div className="categoria-card-plaza" key={categoria.id}>
                             <div className="categoria-image-plaza">
                                 {categoria.imagen_categoria ? (
                                     <img
