@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta para Luisa 🌹</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* --- Carta cerrada --- */
+    .envelope {
+      position: relative;
+      width: 400px;
+      height: 260px;
+      background: #ff6f91;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.4s ease;
+    }
+
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 130px;
+      background: #ff4f73;
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      transition: transform 0.7s ease-in-out;
+      transform-origin: top;
+      z-index: 2;
+    }
+
+    /* --- Contenido de la carta --- */
+    .letter {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      background: white;
+      border-radius: 10px;
+      transform: translateY(120%) scale(0.9);
+      transition: transform 0.8s ease, opacity 0.8s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: black;
+      text-align: center;
+      opacity: 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .letter-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .envelope.open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .envelope.open .letter {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin: 5px 0;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    /* --- Ramo --- */
+    .bouquet {
+      position: relative;
+      width: 120px;
+      height: 180px;
+      flex-shrink: 0;
+    }
+
+    .stem {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 8px;
+      height: 120px;
+      background: green;
+      border-radius: 6px;
+      transform: translateX(-50%);
+    }
+
+    .rose {
+      position: absolute;
+      font-size: 35px;
+      transition: transform 0.5s ease;
+    }
+
+    .tie {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 14px;
+      background: red;
+      border-radius: 8px;
+    }
+
+    footer {
+      font-size: 0.9em;
+      margin-top: -5px ;
+      color: #444;
+      text-align: center;
+    }
+
+    /* --- Pétalos cayendo --- */
+    .petal {
+      position: absolute;
+      top: -50px;
+      font-size: 20px;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.7;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Carta cerrada -->
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="letter">
+      <h1>Para ti, Luisa 🌹</h1>
+      <div class="letter-content">
+        <div class="text">
+          <p>
+            Sé que te gustan las rosas, y aunque ya no salimos mucho,<br>
+            quería darte este pequeño detalle para hacerte sonreír.
+          </p>
+        </div>
+        <div class="bouquet" id="bouquet">
+          <div class="stem"></div>
+          <div class="tie"></div>
+        </div>
+      </div>
+      <footer>Con cariño 💌</footer>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const bouquet = document.getElementById('bouquet');
+    let opened = false;
+
+    function crearRamo() {
+      const totalRosas = 10;
+      for (let i = 0; i < totalRosas; i++) {
+        const rose = document.createElement('div');
+        rose.classList.add('rose');
+        rose.textContent = '🌹';
+
+        const angle = (i - (totalRosas - 1) / 2) * 12;
+        rose.style.left = '50%';
+        rose.style.bottom = '60px';
+        rose.style.transform = `translateX(-50%) rotate(${angle}deg) translateY(-40px)`;
+
+        bouquet.appendChild(rose);
+
+        setTimeout(() => {
+          rose.style.transform = `translateX(-50%) rotate(${angle}deg) translateY(-60px) scale(1.1)`;
+        }, 200 * i);
+      }
+    }
+
+    function crearPetalo() {
+      const petalo = document.createElement('div');
+      petalo.classList.add('petal');
+      petalo.textContent = '🌸';
+
+      petalo.style.left = Math.random() * 100 + 'vw';
+      petalo.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      petalo.style.fontSize = (Math.random() * 10 + 15) + 'px';
+      document.body.appendChild(petalo);
+
+      setTimeout(() => petalo.remove(), 6000);
+    }
+
+    envelope.addEventListener('click', () => {
+      if (!opened) {
+        envelope.classList.add('open');
+        setTimeout(() => {
+          crearRamo();
+          setInterval(crearPetalo, 300);
+        }, 700);
+        opened = true;
+      }
+    });
+  </script>
+</body>
+</html>
